@@ -1,0 +1,212 @@
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+  <!-- BEGIN: Subheader -->
+  <div class="m-subheader ">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="m-subheader__title m-subheader__title--separator">
+          Choose Warehouse Package !
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- END: Subheader -->
+  <div class="m-content">
+    <div class="m-alert m-alert--icon m-alert--outline alert alert-primary" role="alert" *ngIf="message">
+      <div class="m-alert__icon"><i class="la la-warning"></i></div>
+      <div class="m-alert__text">
+        <strong>Oops! Sorry !</strong> It appears that you have choosen a
+        package earlier. we understand that you may want to swap OR opt out for
+        a package, for us to serve you better we decided to carry this
+        responsibility upon us. kindly notify us if you wish to continue !
+      </div>
+      <div class="m-alert__actions" style="width: 200px;">
+        <button type="button" class="btn btn-brand btn-sm m-btn m-btn--pill m-btn--wide" title="Click to notify us. Thank you.">
+          Notify us
+        </button>
+      </div>
+    </div>
+
+    <!-- Begin::Section -->
+    <div class="m-portlet">
+      <div class="m-portlet__body  m-portlet__body--no-padding">
+        <div class="row m-row--no-padding m-row--col-separator-xl">
+          <div class="col-xl-4">
+            <!-- begin:: Widgets/Stats2-1 -->
+            <div class="m-widget1">
+              <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                  <div class="col">
+                    <h3 class="m-widget1__title">MY WAREHOUSE</h3>
+                    <span class="m-widget1__desc">Most people choose this.</span>
+                  </div>
+                  <div class="col m--align-right">
+                    <span class="m-widget1__number m--font-brand">{{ choice.mywarehouse }} members</span>
+                  </div>
+                </div>
+              </div>
+              <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                  <div class="col">
+                    <h3 class="m-widget1__title">Charges</h3>
+                    <span class="m-widget1__desc">Per square meters/month</span>
+                  </div>
+                  <div class="col m--align-right">
+                    <span class="m-widget1__number m--font-danger">NGN 3, 500</span>
+                  </div>
+                </div>
+              </div>
+              <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                  <div class="col">
+                    <h3 class="m-widget1__title">Responsibilities :</h3>
+                    <span class="m-widget1__desc">We manages your Warehouse/Inventory while you focus on
+                      sales
+                    </span>
+                  </div>
+                  <div class="col m--align-right">
+                    <span class="m-widget1__number m--font-success">
+                      <button class="btn btn-danger" (click)="selectWarehouse(1)">
+                        Choose me
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- end:: Widgets/Stats2-1 -->
+          </div>
+
+          <div class="col-xl-4">
+            <!-- begin:: Widgets/Stats2-1 -->
+            <div class="m-widget1">
+              <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                  <div class="col">
+                    <h3 class="m-widget1__title">USER WAREHOUSE</h3>
+                    <span class="m-widget1__desc">Not recommended</span>
+                  </div>
+                  <div class="col m--align-right">
+                    <span class="m-widget1__number m--font-brand">{{ choice.userwarehouse }} members</span>
+                  </div>
+                </div>
+              </div>
+              <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                  <div class="col">
+                    <h3 class="m-widget1__title">Charges</h3>
+                    <span class="m-widget1__desc">Monthly subscription/user</span>
+                  </div>
+                  <div class="col m--align-right">
+                    <span class="m-widget1__number m--font-danger">{{userPrice | currency: 'NGN'}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                  <div class="col">
+                    <h3 class="m-widget1__title">Responsibilities :</h3>
+                    <span class="m-widget1__desc">Taking care of your invenetory all by yourself. Not
+                      recommended
+                    </span>
+                  </div>
+                  <div class="col m--align-right">
+                    <span class="m-widget1__number m--font-default">
+                      <button class="btn btn-default" (click)="selectWarehouse(0)" data-toggle="modal" data-target="#monthSubscribe">
+                        Choose me
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- end:: Widgets/Stats2-1 -->
+          </div>
+
+          <div class="col-xl-4">
+            <!-- begin:: Widgets/Profit Share -->
+            <div class="m-widget14">
+              <div class="m-widget14__header">
+                <h3 class="m-widget14__title">Warehouse Usage</h3>
+                <span class="m-widget14__desc">
+                  Check out the Warehouse people choose most. We thought it will
+                  help you in making your choices too.
+                </span>
+              </div>
+              <div class="row  align-items-center">
+                <!--chart here please... -->
+                <app-warehouse-chart></app-warehouse-chart>
+              </div>
+
+              <!-- end:: Widgets/Profit Share -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End::Section -->
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="monthSubscribe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pay {{ userPrice | currency: ' NGN '}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span class="text-muted">Wallet Bal.: </span> &nbsp; &nbsp;
+        <span class="m-widget25__price m--font-brand" style="font-size: 22px;">{{walletTotal | currency: 'NGN'}}</span>
+        <br />
+        <span>Would you have preferred to pay from your wallet instead ? &nbsp; <input type="checkbox" [checked]="payFromMyWallet"
+            (change)="payFromMyWallet = !payFromMyWallet" /> </span>
+        <hr />
+        <!--<div style="padding-left: 60px;">
+
+          <img src="../../../assets/images/logo.PNG" alt="Pay via paystack" width="100px" height="100px">
+        </div> -->
+
+        <form #theform=ngForm *ngIf="!payFromMyWallet">
+          <br />
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="16" class="form-control" id="recipient-name"
+              name="number" [(ngModel)]="charge.card.number" placeholder="Card No. 0000-0000-0000-0000" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_month"
+              [(ngModel)]="charge.card.expiry_month" id="recipient-name" placeholder="Exp. Month E.g 09" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_year"
+              [(ngModel)]="charge.card.expiry_year" id="recipient-name" placeholder="Exp. Year E.g 21" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="3" class="form-control" name="cvv"
+              [(ngModel)]="charge.card.cvv" id="recipient-name" placeholder="cvv E.g 657" required="">
+          </div>
+
+          <div class="modal-footer">
+
+            <button type="button" (click)="payForBox()" class="btn btn-success btn-block" [disabled]="!theform.valid">PAY
+              {{userPrice | currency: ' NGN '}}</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer" *ngIf="payFromMyWallet">
+        <button type="button" (click)="payFromWallet2()" class="btn btn-danger btn-block">PAY
+          {{userPrice | currency: ' NGN '}}</button>
+      </div>
+    </div>
+  </div>
+</div>

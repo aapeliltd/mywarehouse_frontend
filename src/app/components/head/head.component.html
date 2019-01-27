@@ -1,0 +1,1289 @@
+<!-- begin:: Page -->
+<div *ngIf="hasLoggedin">
+  <div class="m-grid m-grid--hor m-grid--root m-page">
+
+    <!-- BEGIN: Header -->
+    <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
+      <div class="m-container m-container--fluid m-container--full-height">
+        <div class="m-stack m-stack--ver m-stack--desktop">
+
+          <!-- BEGIN: Brand -->
+          <div class="m-stack__item m-brand ">
+            <div class="m-stack m-stack--ver m-stack--general">
+              <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                <a href="#" routerLink="/" class="m-brand__logo-wrapper">
+                  <img alt="" src="../../warehouse_theme/assets/demo/demo7/media/img/logo/logo.png" />
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- END: Brand -->
+          <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+
+            <!-- BEGIN: Horizontal Menu -->
+
+            <button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn"><i
+                class="la la-close"></i></button>
+            <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light ">
+              <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+                <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click"
+                  aria-haspopup="true"><a href="javascript:;" [routerLink]="['/']" routerLinkActive="router-link-active"
+                    class="m-menu__link m-menu__toggle" title="Dashboard"><span class="m-menu__item-here"></span><span
+                      class="m-menu__link-text">Dashboard</span></a>
+                </li>
+                <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click"
+                  m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" [routerLink]="['/choose-warehouse']"
+                    routerLinkActive="router-link-active" class="m-menu__link m-menu__toggle" title="Choose warehouse package"><span
+                      class="m-menu__item-here"></span>
+
+                    <span class="m-menu__link-text"><span class="m-nav__link-badge m-badge m-badge--danger">1</span>&nbsp;
+                      Choose Warehouse</span></a>
+
+                </li>
+                <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click"
+                  m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" [routerLink]="['/warehouse-location']"
+                    routerLinkActive="router-link-active" class="m-menu__link m-menu__toggle" title="Select warehouse that is close to you"><span
+                      class="m-menu__item-here"></span><span class="m-menu__link-text"> <span class="m-nav__link-badge m-badge m-badge--danger">2</span>&nbsp;
+                      Warehouse
+                      Location</span></a>
+
+                </li>
+                <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click"
+                  m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" (click)="openBoxList($event)"
+                    class="m-menu__link m-menu__toggle" title="Non functional dummy link"><span class="m-menu__item-here"></span><span
+                      class="m-menu__link-text"><span class="m-nav__link-badge m-badge m-badge--danger">3</span>&nbsp;
+                      Buy
+                      Box/Pallet </span></a>
+
+                </li>
+
+              </ul>
+            </div>
+
+            <!-- END: Horizontal Menu -->
+
+            <!-- BEGIN: Topbar -->
+            <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+              <div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light"
+                id="m_quicksearch" m-quicksearch-mode="default">
+
+                <a href="javascript:;" (click)="openWallet($event)" title="fund wallet, view wallet history"><span>Wallet
+                    Bal.</span></a>
+                <div class="m-widget25">
+                  <!--<span class="m-widget25__desc">Wallet Bal. </span> -->
+                  <span class="m-widget25__price m--font-brand" style="font-size:30px" title="Wallet balance as at today !">{{walletTotal
+                    | currency: ' NGN '}}</span>
+
+                </div>
+
+
+
+                <!--BEGIN: Search Results -->
+                <div class="m-dropdown__wrapper">
+                  <div class="m-dropdown__arrow m-dropdown__arrow--center"></div>
+                  <div class="m-dropdown__inner">
+                    <div class="m-dropdown__body">
+                      <div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-height="300"
+                        data-mobile-height="200">
+                        <div class="m-dropdown__content m-list-search m-list-search--skin-light">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--BEGIN: END Results -->
+              </div>
+              <div class="m-stack__item m-topbar__nav-wrapper">
+                <ul class="m-topbar__nav m-nav m-nav--inline">
+                  <li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
+                    m-dropdown-toggle="click" m-dropdown-persistent="1">
+                    <a href="#" (click)="updatelogs()" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
+                      <span class="m-nav__link-badge m-badge m-badge--danger">{{count_log}}</span>
+                      <span class="m-nav__link-icon"><span class="m-nav__link-icon-wrapper"><i class="flaticon-alarm"></i></span></span>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                      <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                      <div class="m-dropdown__inner">
+                        <div class="m-dropdown__header m--align-center">
+                          <span class="m-dropdown__header-title">{{count_log}} New</span>
+                          <span class="m-dropdown__header-subtitle">Company Notifications</span>
+                        </div>
+                        <div class="m-dropdown__body">
+                          <div class="m-dropdown__content">
+                            <ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
+                              <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#topbar_notifications_notifications"
+                                  role="tab">
+                                  Alerts
+                                </a>
+                              </li>
+                              <!-- <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_events"
+                                  role="tab">Events</a>
+                              </li>
+                              <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_logs"
+                                  role="tab">Logs</a>
+                              </li> -->
+                            </ul>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
+                                <div class="m-scrollable" data-scrollable="true" data-height="250" data-mobile-height="200">
+                                  <div class="m-list-timeline m-list-timeline--skin-light">
+                                    <div class="m-list-timeline__items">
+                                      <div class="m-list-timeline__item" *ngFor="let item of logs">
+                                        <span class="m-list-timeline__badge"></span>
+                                        <span class="m-list-timeline__text">{{item.remarks}}<br /> ({{item.created |
+                                          date: 'fullDate'}}) <span class="m-badge m-badge--success m-badge--wide">{{item.status}}</span></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
+                    m-dropdown-toggle="click">
+                    <a href="#" class="m-nav__link m-dropdown__toggle">
+                      <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+                      <span class="m-nav__link-icon"><span class="m-nav__link-icon-wrapper"><i class="flaticon-share"></i></span></span>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                      <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                      <div class="m-dropdown__inner">
+                        <div class="m-dropdown__header m--align-center">
+                          <span class="m-dropdown__header-title">Quick Actions</span>
+                          <span class="m-dropdown__header-subtitle">Shortcuts</span>
+                        </div>
+                        <div class="m-dropdown__body m-dropdown__body--paddingless">
+                          <div class="m-dropdown__content">
+                            <div class="m-scrollable" data-scrollable="false" data-height="380" data-mobile-height="200">
+                              <div class="m-nav-grid m-nav-grid--skin-light">
+                                <div class="m-nav-grid__row">
+                                  <a href="#" routerLink="/warehouse-manager" class="m-nav-grid__item">
+                                    <i class="m-nav-grid__icon flaticon-file"></i>
+                                    <span class="m-nav-grid__text">Warehouse Manager</span>
+                                  </a>
+                                  <a href="#" class="m-nav-grid__item" (click)="openBoxList($event)">
+                                    <i class="m-nav-grid__icon flaticon-app"></i>
+                                    <span class="m-nav-grid__text">Box</span>
+                                  </a>
+                                </div>
+                                <div class="m-nav-grid__row">
+                                  <a href="#" class="m-nav-grid__item" (click)="openWallet($event)" title="Billing">
+                                    <i class="m-nav-grid__icon flaticon-folder"></i>
+                                    <span class="m-nav-grid__text">Billing</span>
+                                  </a>
+                                  <a href="#" (click)="supports($event)" title="how can we help you ?" class="m-nav-grid__item">
+                                    <i class="m-nav-grid__icon flaticon-info"></i>
+                                    <span class="m-nav-grid__text">Support</span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                    m-dropdown-toggle="click">
+                    <a href="#" class="m-nav__link m-dropdown__toggle">
+                      <span class="m-topbar__userpic m--hide">
+                        <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered"
+                          alt="" />
+                      </span>
+                      <span class="m-nav__link-icon m-topbar__usericon">
+                        <span class="m-nav__link-icon-wrapper"><i class="flaticon-user-ok"></i></span>
+                      </span>
+                      <span class="m-topbar__username m--hide">Nick</span>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                      <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                      <div class="m-dropdown__inner">
+                        <div class="m-dropdown__header m--align-center">
+                          <div class="m-card-user m-card-user--skin-light">
+                            <div class="m-card-user__pic">
+                              <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
+                            </div>
+                            <div class="m-card-user__details">
+                              <span class="m-card-user__name m--font-weight-500">{{user.name}}</span>
+                              <a href="" class="m-card-user__email m--font-weight-300 m-link">{{user.email}}</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-dropdown__body">
+                          <div class="m-dropdown__content">
+                            <ul class="m-nav m-nav--skin-light">
+                              <li class="m-nav__section m--hide">
+                                <span class="m-nav__section-text">Section</span>
+                              </li>
+                              <li class="m-nav__item">
+                                <a href="#" class="m-nav__link" (click)="updateProfile()">
+                                  <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                  <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                      <span class="m-nav__link-text">Company Profile</span>
+                                      <!--<span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>-->
+                                    </span>
+                                  </span>
+                                </a>
+                              </li>
+                              <li class="m-nav__item">
+                                <a href="#" [routerLink]="['/choose-warehouse']" routerLinkActive="router-link-active"
+                                  class="m-nav__link">
+                                  <i class="m-nav__link-icon flaticon-share"></i>
+                                  <span class="m-nav__link-text">Choose warehouse package</span>
+                                </a>
+                              </li>
+                              <li class="m-nav__item">
+                                <a href="#" [routerLink]="['/warehouse-location']" routerLinkActive="router-link-active"
+                                  class="m-nav__link">
+                                  <i class="m-nav__link-icon flaticon-map"></i>
+                                  <span class="m-nav__link-text">Our warehouse Location</span>
+                                </a>
+                              </li>
+                              <li class="m-nav__separator m-nav__separator--fit">
+                              </li>
+
+
+                              <li class="m-nav__separator m-nav__separator--fit">
+                              </li>
+                              <li class="m-nav__item">
+                                <a href="#" (click)="logout($event)" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+            <!-- END: Topbar -->
+          </div>
+        </div>
+        <div class="m-alert m-alert--icon m-alert--outline alert alert-primary" role="alert" *ngIf="box_message">
+          <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+          </div>
+          <div class="m-alert__text">
+            <strong>Hi {{user.name | uppercase }} !</strong> Thank you for your interest in our warehouse services, we
+            will need you to subscribe to
+            to our warehouses services and goodies before you can use the selected services. Thank you !
+          </div>
+          <div class="m-alert__actions" style="width: 200px;">
+            <button type="button" (click)="notifyUs()" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide"
+              data-dismiss="alert" aria-label="Close">Opt in for my warehouse services
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- END: Header -->
+
+    <!-- begin::Body -->
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+
+      <!-- BEGIN: Left Aside -->
+      <button class="m-aside-left-close  m-aside-left-close--skin-light " id="m_aside_left_close_btn"><i class="la la-close"></i></button>
+      <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
+
+        <!-- BEGIN: Brand -->
+        <div class="m-brand  m-brand--skin-light ">
+          <a href="#" routerLink="/" class="m-brand__logo">
+            <img alt="" src="../../warehouse_theme/assets/demo/demo7/media/img/logo/logo.png" />
+          </a>
+        </div>
+
+        <!-- END: Brand -->
+
+        <!-- BEGIN: Aside Menu -->
+        <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light "
+          data-menu-vertical="true" m-menu-scrollable="true" m-menu-dropdown-timeout="500">
+          <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+            <li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" aria-haspopup="true"
+              m-menu-submenu-toggle="click" m-menu-dropdown-toggle-class="m-aside-menu-overlay--on"><a href="#" title="Warehouse manager (Create product, inventory, Purchase order, Sales order etc)"
+                [routerLink]="['/warehouse-manager']" routerLinkActive="router-link-active" class="m-menu__link m-menu__toggle"><i
+                  class="m-menu__link-icon flaticon-file"></i></a>
+
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="click"
+              m-menu-link-redirect="1"><a href="#" (click)="openWallet($event)" title=" Transactions" routerLinkActive="router-link-active"
+                class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-folder"></i>
+              </a>
+
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu m-menu__item--bottom" aria-haspopup="true"
+              m-menu-submenu-toggle="click" m-menu-link-redirect="1"><a href="#" title="Our boxes come in variance !"
+                (click)="openBoxList($event)" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-app"></i>
+              </a>
+
+            </li>
+            <!-- <li class="m-menu__item  m-menu__item--submenu m-menu__item--bottom-2" aria-haspopup="true"
+              m-menu-submenu-toggle="click"><a href="#" (click)="openTracking($event)" title="Track your inventory, order fulfilment, purchase orders etc"
+                class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-clipboard"></i>
+              </a>
+
+            </li>-->
+            <li class="m-menu__item  m-menu__item--submenu m-menu__item--bottom-1" aria-haspopup="true"
+              m-menu-submenu-toggle="click"><a href="javascript:;" title="Any doubt, you are not alone !" class="m-menu__link m-menu__toggle"><i
+                  class="m-menu__link-icon flaticon-info"></i>
+              </a>
+
+            </li>
+          </ul>
+        </div>
+
+        <!-- END: Aside Menu -->
+      </div>
+      <div class="m-aside-menu-overlay"></div>
+
+      <!-- END: Left Aside -->
+      <router-outlet></router-outlet>
+      <!--show pages here-->
+
+    </div>
+
+    <!-- end:: Body -->
+
+    <!-- begin::Footer -->
+    <footer class="m-grid__item		m-footer ">
+      <div class="m-container m-container--fluid m-container--full-height m-page__container">
+        <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+          <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+            <span class="m-footer__copyright">
+              2019 &copy; myWarehouse. All right reserved. Powered by <a href="http://www.probitysoftware.com" target="_blank"
+                class="m-link">ProbitySoftware</a>
+            </span>
+          </div>
+          <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+            <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+              <li class="m-nav__item">
+                <a href="#" class="m-nav__link">
+                  <span class="m-nav__link-text">About</span>
+                </a>
+              </li>
+              <li class="m-nav__item">
+                <a href="#" class="m-nav__link">
+                  <span class="m-nav__link-text">Privacy</span>
+                </a>
+              </li>
+              <li class="m-nav__item">
+                <a href="#" class="m-nav__link">
+                  <span class="m-nav__link-text">T&C</span>
+                </a>
+              </li>
+              <li class="m-nav__item">
+                <a href="#" routerLink="/warehouse-manager" class="m-nav__link">
+                  <span class="m-nav__link-text">Warehouse manager</span>
+                </a>
+              </li>
+              <li class="m-nav__item m-nav__item">
+                <a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
+                  <i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- end::Footer -->
+  </div>
+
+  <!-- end:: Page -->
+
+  <!-- begin::Quick Sidebar -->
+
+
+  <!-- end::Quick Sidebar -->
+
+  <!-- begin::Scroll Top -->
+  <div id="m_scroll_top" class="m-scroll-top">
+    <i class="la la-arrow-up"></i>
+  </div>
+
+  <!-- end::Scroll Top -->
+
+  <!-- begin::Quick Nav -->
+  <ul class="m-nav-sticky" style="margin-top: 30px;">
+    <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Warehouse Manager" data-placement="left">
+      <a href="#" routerLink="/warehouse-manager"> <i class="flaticon-file"></i></a>
+    </li>
+    <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Billing" data-placement="left">
+      <a href="javascript:;"><i class="flaticon-folder"></i></a>
+    </li>
+    <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Box Manager" data-placement="left">
+      <a href="javascript:;"><i class="flaticon-app"></i></a>
+    </li>
+    <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Support" data-placement="left">
+      <a href="javascript:;"><i class="flaticon-info"></i></a>
+    </li>
+  </ul>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--has logged in-->
+
+<div class="m-grid m-grid--hor m-grid--root m-page" *ngIf="!hasLoggedin">
+  <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 m-login--signin"
+    id="m_login">
+    <div class="m-grid__item m-grid__item--order-tablet-and-mobile-2 m-login__aside">
+      <div class="m-stack m-stack--hor m-stack--desktop">
+        <div class="m-stack__item m-stack__item--fluid">
+          <div class="m-login__wrapper">
+            <div class="m-login__logo">
+              <a href="#">
+                <img src="../../../assets/images/logo.PNG">
+              </a>
+            </div>
+            <!--login form-->
+            <div class="m-login__signin" *ngIf="!showSignUpForm">
+              <div class="m-login__head">
+                <h3 class="m-login__title">Sign In To Admin</h3>
+              </div>
+              <form #log=ngForm class="m-login__form m-form" (ngSubmit)="login()">
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input" type="text" placeholder="Email" name="email" [(ngModel)]="loginForm.email"
+                    autocomplete="off" required>
+                </div>
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password"
+                    [(ngModel)]="loginForm.password" name="password" required>
+                </div>
+                <div class="row m-login__form-sub">
+                  <div class="col m--align-left">
+                    <label class="m-checkbox m-checkbox--focus">
+                      <input type="checkbox" name="remember"> Remember me
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class="col m--align-right">
+                    <a href="javascript:;" id="m_login_forget_password" class="m-link">Forget Password ?</a>
+                  </div>
+                </div>
+                <div class="m-login__form-action">
+                  <button type="submit" [disabled]="!log.valid" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Sign
+                    In</button>
+                </div>
+
+              </form>
+            </div>
+
+
+            <!-- sign up-->
+            <div class="m-login__signup2" *ngIf="showSignUpForm">
+              <div class="m-login__head">
+                <h3 class="m-login__title">Sign Up</h3>
+                <div class="m-login__desc">Enter your details to create your account:</div>
+                <div *ngIf="userExist" class="alert alert-danger">User already exist in our database. Please choose
+                  another one !</div>
+              </div>
+              <form #log2=ngForm class="m-login__form m-form" (ngSubmit)="signUpAccount()">
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input" type="text" placeholder="Fullname" name="fullname" [(ngModel)]="signUpForm.name"
+                    required>
+                </div>
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off"
+                    [(ngModel)]="signUpForm.email" required>
+                </div>
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input" type="text" placeholder="Company name" [(ngModel)]="signUpForm.company"
+                    name="company" required>
+                </div>
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password"
+                    name="password" [(ngModel)]="signUpForm.password" required>
+                </div>
+                <div class="row form-group m-form__group m-login__form-sub">
+                  <div class="col m--align-left">
+                    <label class="m-checkbox m-checkbox--focus">
+                      <input type="checkbox" name="agree" [checked]="termandcondition" (change)="termandcondition = !termandcondition"
+                        checked> I Agree the <a href="#" class="m-link m-link--focus">terms and conditions</a>.
+                      <span></span>
+                    </label>
+                    <span class="m-form__help"></span>
+                  </div>
+                </div>
+                <div class="m-login__form-action">
+                  <button type="submit" id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air"
+                    [disabled]="!termandcondition || !log2.valid">Sign Up</button>
+                  <button id="m_login_signup_cancel" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom"
+                    (click)="signUpLink($event)">Cancel</button>
+                </div>
+              </form>
+            </div>
+
+
+            <!--forgot password-->
+            <div class="m-login__forget-password">
+              <div class="m-login__head">
+                <h3 class="m-login__title">Forgotten Password ?</h3>
+                <div class="m-login__desc">Enter your email to reset your password:</div>
+              </div>
+              <form class="m-login__form m-form" action="">
+                <div class="form-group m-form__group">
+                  <input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email"
+                    autocomplete="off">
+                </div>
+                <div class="m-login__form-action">
+                  <button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Request</button>
+                  <button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <!--control-->
+        <div class="m-stack__item m-stack__item--center" *ngIf="!showSignUpForm">
+          <div class="m-login__account">
+            <span class="m-login__account-msg">
+              Don't have an account yet ?
+            </span>&nbsp;&nbsp;
+            <a href="javascript:;" id="m_login_signup" class="m-link m-link--focus m-login__account-link" (click)="signUpLink($event)">Sign
+              Up</a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1
+        	m-login__content m-grid-item--center"
+      style="background-image: url(../../../assets/images/bg-4.jpg)">
+      <div class="m-grid__item">
+        <h3 class="m-login__welcome">Cloud based warehouse</h3>
+        <p class="m-login__msg">
+          Allow us to handle your warehouse<br>while you focus on sales
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ngx-smart-modal #myModal2 identifier="myModal2">
+  <h3>Buy box</h3>
+
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            <select name="warehouse_list" id="" class="form-control" *ngFor="let item of selected_warehouse_list"
+              (change)="getBoxexAsPerWarehouse(item.id)">
+              <option value="0">Select Warehouse</option>
+              <option value="{{item.id}}">{{item.name}} :: {{item.location}}</option>
+            </select>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+
+      <!--begin::Section-->
+      <div class="m-section m-section--last">
+        <div class="m-section__content">
+
+          <!--begin::Preview-->
+          <div class="m-demo">
+            <div class="m-demo__preview">
+              <div class="m-list-search">
+                <div class="m-list-search__results">
+                  <div class="m-alert m-alert--icon m-alert--outline alert alert-primary" role="alert">
+                    <div class="m-alert__icon">
+                      <i class="la la-warning"></i>
+                    </div>
+                    <div class="m-alert__text">
+                      <strong>Hi {{user.name | uppercase}}, </strong> Thank you for using our warehouse services,
+                      kindly enter the quantity of boxes you will be needing and
+                      press ENTER/TAB key and when you are satisfied, hit checkout button. <span style="color: red;">Please
+                        use the clear button to clear cart ! </span>
+
+                    </div>
+                    <div class="m-alert__actions" style="width: 200px;">
+                      <button type="button" (click)="payBox()" data-toggle="modal" data-target="#m_modal_5" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide">Checkout
+                        ({{grand_total | currency: ' NGN '}})
+                      </button>
+                      <a href="#" (click)="clearChart($event)" class="text-muted">Clear</a>
+                    </div>
+                  </div>
+
+                  <span class="m-list-search__result-category">
+                    <button class="btn btn-default" (click)="payBox()" data-toggle="modal" data-target="#m_modal_5">Check
+                      out ({{grand_total
+                      | currency: ' NGN '}})</button>
+
+                  </span>
+                  <a href="#" (click)="clearChart($event)" class="text-muted">Clear</a>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Box Identification Number</th>
+                        <th>Photo</th>
+                        <th>Size</th>
+                        <th>Price/month</th>
+                        <th>Qty</th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of boxes" title="select item to buy box">
+                        <td>{{item.boxid}}</td>
+                        <td> <a href="{{item.pic}}" target="_blank"><img src="{{item.pic}}" alt="Box Photo" height="70px"></a>
+                          <br> <strong>{{item.name}}</strong></td>
+                        <td>{{item.length}}M X
+                          {{item.width}}M = {{item.length * item.width}}M<sup>2</sup>
+                        </td>
+                        <td>{{item.cost | currency: ' NGN ' }}</td>
+                        <td><input type="text" name="qty{{item.id}}" [(ngModel)]="item.line_qty" placeholder="Enter prefered quantity"
+                            class="form-control"></td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+                  <button type="button" (click)="calculateTotal()" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide">
+                    Purchase
+                  </button>
+                  <button class="btn btn-default float-right" (click)="payBox()" data-toggle="modal" data-target="#m_modal_5">Check
+                    out ({{grand_total
+                    | currency: ' NGN '}}) <i class="m-nav__link-icon flaticon-shopping-cart"></i></button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--end::Preview-->
+
+
+        </div>
+      </div>
+
+      <!--end::Section-->
+    </div>
+  </div>
+
+
+  <button (click)="myModal2.close()">Close</button>
+</ngx-smart-modal>
+
+
+<ngx-smart-modal #wallet identifier="wallet">
+  <h3>Transactions ( wallet and other payments )</h3>
+
+  <div class="row">
+    <div class="col-xl-12">
+
+
+      <div class="m-portlet m-portlet--tabs">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Transactions . Wallet Bal. :- {{walletTotal | currency: ' NGN '}}
+              </h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+            <ul class="nav nav-tabs m-tabs-line m-tabs-line--right" role="tablist">
+              <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_portlet_base_demo_1_tab_content"
+                  role="tab">
+                  <i class="flaticon-multimedia"></i> Wallets
+                </a>
+              </li>
+              <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_base_demo_2_tab_content" (click)="getOtherTransactions()"
+                  role="tab">
+                  <i class="flaticon-squares-3"></i> Box
+                </a>
+              </li>
+              <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_base_demo_3_tab_content" (click)="getOtherTransactions2()"
+                  role="tab">
+                  <i class="flaticon-calendar-3"></i> Subscription
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="tab-content">
+            <div class="tab-pane active" id="m_portlet_base_demo_1_tab_content" role="tabpanel">
+              <div class="col-md-12">
+                <span class="m-section__sub">
+                  <div class="m-alert m-alert--icon m-alert--outline alert alert-primary" role="alert">
+                    <div class="m-alert__icon">
+                      <i class="la la-warning"></i>
+                    </div>
+                    <div class="m-alert__text">
+                      <strong>Wallet Transactions ! </strong> This console showing the list of wallet transactions with
+                      dates. You can also
+                      fund
+                      your wallet here !
+                    </div>
+                    <div class="m-alert__actions" style="width: 200px;">
+                      <button type="button" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide" data-toggle="modal"
+                        data-target="#funWallet1">Fund your wallet ( {{walletTotal | currency: 'NGN'}} )
+                      </button>
+                    </div>
+                  </div>
+                </span>
+                <div class="m-section__content" style="overflow-y: auto; height: 500px ;">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Reference</th>
+                        <th>Auth_Code</th>
+                        <th>Bank</th>
+                        <th>Date time</th>
+                        <th>Credit</th>
+                        <th>Debit</th>
+                        <th>Remarks</th>
+                        <!-- <th></th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of walletTransactions" [ngClass]="item.debit > 0 ? 'red' : 'green' ">
+                        <td>{{item.reference | uppercase}}</td>
+                        <td>{{item.auth_code | uppercase}}</td>
+                        <td>{{item.bank | uppercase}} / {{item.card_type | uppercase}}</td>
+                        <td>{{item.date_in}}</td>
+                        <td>{{item.credit | currency: ' NGN '}}</td>
+                        <td>{{item.debit | currency: ' NGN '}}</td>
+                        <td>{{item.bin}}*****{{item.last4}} / IP_address: {{item.ip_address}}</td>
+                        <!--<td><a href="#" (click)="paymentFor2(item.id, item.reference, item.date_in, item.debit)"><i
+                              class="flaticon-arrows"></i></a></td> -->
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="4">Wallet Bal. </td>
+                        <td>{{totalWalletCredit | currency: ' NGN '}}</td>
+                        <td>{{totalWalletDebit | currency: ' NGN '}}</td>
+                        <td style="font-size: 18px;"> <strong>{{this.walletTotal | currency: ' NGN '}}</strong>
+                        </td>
+                      </tr>
+                    </tfoot>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="m_portlet_base_demo_2_tab_content" role="tabpanel">
+              <div class="m-section__content" style="overflow-y: auto; height: 500px ;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Reference</th>
+                      <th>Auth_Code</th>
+                      <th>Bank</th>
+                      <th>Date time</th>
+                      <th>Amount</th>
+                      <th>Remarks</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of otherTransactions">
+                      <td>{{item.reference | uppercase}}</td>
+                      <td>{{item.authorization_code | uppercase}}</td>
+                      <td>{{item.bank | uppercase}} / {{item.card_type | uppercase}}</td>
+                      <td>{{item.paidAt | date:'full'}}</td>
+                      <td>{{item.amount | currency: ' NGN '}}</td>
+                      <td>{{item.bin}}*****{{item.last4}} / IP_address: {{item.ip_address}}</td>
+                      <td><a href="#" (click)="paymentFor(item.id, item.reference, item.paidAt, item.amount)"><i class="flaticon-arrows"></i></a></td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr style="font-size: 15px">
+                      <td colspan="4">Total</td>
+                      <td>{{totalOtherTransaction | currency: 'NGN'}}</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+
+
+                </table>
+              </div>
+            </div>
+
+
+            <div class="tab-pane" id="m_portlet_base_demo_3_tab_content" role="tabpanel">
+              <button type="button" class="btn btn-success btn-sm m-btn m-btn--pill m-btn--wide" data-toggle="modal"
+                data-target="#newUserAccount">
+                Buy new subscription
+              </button>
+              <br />
+
+              <div class="m-section__content" style="overflow-y: auto; height: 500px ;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <td>User</td>
+                      <th>Amount</th>
+                      <th>Elapsed</th>
+                      <th>Remarks</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of subscriptions">
+                      <td>{{item.user | uppercase}}</td>
+                      <td>{{item.amount | currency: 'NGN'}}</td>
+                      <td>{{item.end_date | date: 'full'}}</td>
+                      <td>You have {{item.remain_days}} days left ! </td>
+                      <td>
+                        <button type="button" (click)="extendUserAccount(item.id, item.user)" data-toggle="modal"
+                          data-target="#newUserAccountExt" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide">
+                          Renew/Extend
+                        </button></td>
+                    </tr>
+                  </tbody>
+
+
+
+
+                </table>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+  <button (click)="wallet.close()">Close</button>
+</ngx-smart-modal>
+
+
+
+<ngx-smart-modal #singleWallet identifier="singleWallet">
+  <h3>Transaction reference: {{transactionReferece | uppercase}} *** Amount : {{rowTotal | currency: 'NGN'}}</h3>
+
+
+  <div class="row">
+    <div class="col-xl-12">
+
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Paid date : {{transactionPaidDay}}
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <!--begin::Section-->
+          <div class="m-section" style="overflow-y: auto; height: 400px;">
+            <div class="m-section__content">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Box Identification Number</th>
+                    <th>Box</th>
+                    <th>Cost</th>
+                    <th>Expired</th>
+                    <th>Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of singleTransactions">
+                    <td>{{item.boxCode}} - {{item.boxSubCode}}</td>
+                    <td><img src="{{item.pic}}" alt="Box Photo" height="70px" /> {{item.box}} <br> {{item.length *
+                      item.width}}M<sup>2</sup> / {{item.length * item.width * item.height}}M<sup>3</sup></td>
+                    <td>{{item.singleCost | currency: ' NGN '}}</td>
+                    <td>{{item.expired_date | date: 'fullDate'}}</td>
+                    <td [ngClass]="item.remain_days > 0 ? 'bg-success text-center': 'bg-danger text-center'" style="padding-top: 20px;">
+                      <span *ngIf="item.remain_days > 0 " style="color:#fff">{{item.remain_days}}
+                        days
+                        left <br /> Live ! @ {{item.warehouse}}</span>
+                      <span *ngIf="item.remain_days < 0 " style="color:#fff">{{item.expired_date |
+                        date: 'shortDate'}} <br /> Expired ! </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!--end::Section-->
+
+
+        </div>
+
+        <!--end::Form-->
+      </div>
+
+      <!--end::Portlet-->
+
+
+      >
+    </div>
+
+  </div>
+
+  <button (click)="singleWallet.close()">Close</button>
+</ngx-smart-modal>
+
+
+
+
+<div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pay {{ grand_total | currency: ' NGN '}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span class="text-muted">Wallet Bal.: </span> &nbsp; &nbsp;
+        <span class="m-widget25__price m--font-brand" style="font-size: 22px;">{{walletTotal | currency: 'NGN'}}</span>
+        <br />
+        <span>Would you have preferred to pay from your wallet instead ? &nbsp; <input type="checkbox" [checked]="payFromMyWallet"
+            (change)="payFromMyWallet = !payFromMyWallet" /> </span>
+        <hr />
+        <!--<div style="padding-left: 60px;">
+
+          <img src="../../../assets/images/logo.PNG" alt="Pay via paystack" width="100px" height="100px">
+        </div> -->
+
+
+
+
+        <form #theform=ngForm *ngIf="!payFromMyWallet">
+          <span *ngIf="!payButton" style="color: red">Please select warehouse, then enter qty of box !</span>
+          <br />
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="16" class="form-control" id="recipient-name"
+              name="number" [(ngModel)]="charge.card.number" placeholder="Card No. 0000-0000-0000-0000" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_month"
+              [(ngModel)]="charge.card.expiry_month" id="recipient-name" placeholder="Exp. Month E.g 09" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_year"
+              [(ngModel)]="charge.card.expiry_year" id="recipient-name" placeholder="Exp. Year E.g 21" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="3" class="form-control" name="cvv"
+              [(ngModel)]="charge.card.cvv" id="recipient-name" placeholder="cvv E.g 657" required="">
+          </div>
+
+          <div class="modal-footer">
+
+            <button type="button" (click)="payForBox()" class="btn btn-success btn-block" *ngIf="payButton" [disabled]="!theform.valid">PAY
+              {{grand_total | currency: ' NGN '}}</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer" *ngIf="payFromMyWallet">
+        <button type="button" (click)="payFromWallet2()" class="btn btn-danger btn-block">PAY
+          {{grand_total | currency: ' NGN '}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="funWallet1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pay {{ charge2.amount | currency: ' NGN '}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="padding-left: 60px;">
+          <img src="../../../assets/images/logo.PNG" alt="Pay via paystack" width="100px" height="100px">
+        </div>
+
+
+        <form #theform2=ngForm>
+          <br />
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="7" class="form-control" id="recipient-name2"
+              name="amount" [(ngModel)]="charge2.amount" placeholder="Amount" required="">
+          </div>
+
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="16" class="form-control" id="recipient-name"
+              name="number" [(ngModel)]="charge2.card.number" placeholder="Card No. 0000-0000-0000-0000" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_month"
+              [(ngModel)]="charge2.card.expiry_month" id="recipient-name" placeholder="Exp. Month E.g 09" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_year"
+              [(ngModel)]="charge2.card.expiry_year" id="recipient-name" placeholder="Exp. Year E.g 21" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="3" class="form-control" name="cvv"
+              [(ngModel)]="charge2.card.cvv" id="recipient-name" placeholder="cvv E.g 657" required="">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" (click)="payForBox2()" class="btn btn-success btn-block" [disabled]="!theform2.valid">PAY
+          {{charge2.amount | currency: ' NGN '}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="newUserAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pay {{ userPrice | currency: ' NGN '}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--<div style="padding-left: 60px;">
+          <img src="../../../assets/images/logo.PNG" alt="Pay via paystack" width="100px" height="100px">
+        </div> -->
+
+
+        <form #theform3=ngForm>
+          <div class="form-group">
+            <input type="email" class="form-control" id="recipient-name2" name="accountName" [(ngModel)]="purchaseBox.accountName"
+              placeholder="Please enter your account Name" required="">
+          </div>
+
+          <div class="form-group">
+            <input type="email" class="form-control" id="recipient-name2" name="email" [(ngModel)]="charge3.email"
+              placeholder="Please enter your account email" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="7" class="form-control" id="recipient-name2"
+              name="userPrice" [(ngModel)]="userPrice" placeholder="Amount" required="" readonly="">
+          </div>
+
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="16" class="form-control" id="recipient-name"
+              name="number" [(ngModel)]="charge3.card.number" placeholder="Card No. 0000-0000-0000-0000" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_month"
+              [(ngModel)]="charge3.card.expiry_month" id="recipient-name" placeholder="Exp. Month E.g 09" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_year"
+              [(ngModel)]="charge3.card.expiry_year" id="recipient-name" placeholder="Exp. Year E.g 21" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="3" class="form-control" name="cvv"
+              [(ngModel)]="charge3.card.cvv" id="recipient-name" placeholder="cvv E.g 657" required="">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" (click)="payForBox3()" class="btn btn-success btn-block" [disabled]="!theform3.valid">PAY
+          {{userPrice | currency: ' NGN '}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="newUserAccountExt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pay {{ userPrice2 | currency: ' NGN '}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--<div style="padding-left: 60px;">
+          <img src="../../../assets/images/logo.PNG" alt="Pay via paystack" width="100px" height="100px">
+        </div> -->
+
+
+        <form #theform3=ngForm>
+
+
+          <div class="form-group">
+            <span style="color: red;">Enter month count, default is 1 month</span>
+            <input type="text" class="form-control" id="recipient-name2" name="monthCount" [(ngModel)]="purchaseBox.monthCount"
+              placeholder="Please enter month count" required="" (blur)="updateMonthCount()">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="7" class="form-control" id="recipient-name2"
+              name="userPrice2" [(ngModel)]="userPrice2" placeholder="Amount" required="" readonly="">
+          </div>
+
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="16" class="form-control" id="recipient-name"
+              name="number" [(ngModel)]="charge4.card.number" placeholder="Card No. 0000-0000-0000-0000" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_month"
+              [(ngModel)]="charge4.card.expiry_month" id="recipient-name" placeholder="Exp. Month E.g 09" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="2" class="form-control" name="expiry_year"
+              [(ngModel)]="charge4.card.expiry_year" id="recipient-name" placeholder="Exp. Year E.g 21" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" (keypress)="Onlynumber($event)" maxlength="3" class="form-control" name="cvv"
+              [(ngModel)]="charge4.card.cvv" id="recipient-name" placeholder="cvv E.g 657" required="">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" (click)="payForBox4()" class="btn btn-success btn-block" [disabled]="!theform3.valid">PAY
+          {{userPrice2 | currency: ' NGN '}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ngx-smart-modal #companyprofile identifier="companyprofile">
+  <h3>Company Profile</h3>
+
+
+  <div class="row">
+    <div class="col-xl-12">
+
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__body">
+
+          <!--begin::Section-->
+          <div class="col-md-12">
+            <form action="" #profileForm=ngForm (ngSubmit)="updateCompanyProfile()">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="profile.name"
+                  required>
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" placeholder="Phone" name="phone" [(ngModel)]="profile.phone"
+                  required>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="profile.email"
+                  required readonly="">
+              </div>
+              <div class="form-group">
+                <label>Website</label>
+                <input type="text" class="form-control" placeholder="Website" name="website" [(ngModel)]="profile.website">
+              </div>
+              <div class="form-group">
+                <label>Logo URL</label>
+                <input type="text" class="form-control" placeholder="Logo URL" name="website" [(ngModel)]="profile.logo">
+              </div>
+              <div class="form-group">
+                <label>Addresss</label>
+                <textarea name="address" id="" class="form-control" cols="30" rows="2" [(ngModel)]="profile.address"></textarea>
+              </div>
+
+              <div>
+                <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid">Update</button>
+              </div>
+
+            </form>
+
+          </div>
+
+          <!--end::Section-->
+
+
+        </div>
+
+        <!--end::Form-->
+      </div>
+
+      <!--end::Portlet-->
+
+
+
+    </div>
+
+  </div>
+
+
+
+  <button (click)="companyprofile.close()">Close</button>
+</ngx-smart-modal>

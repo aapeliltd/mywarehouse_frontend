@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-xl-12">
+
+
+    <div class="m-portlet m-portlet--tabs">
+      <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">
+              Tracking
+            </h3>
+          </div>
+        </div>
+        <div class="m-portlet__head-tools">
+          <ul class="nav nav-tabs m-tabs-line m-tabs-line--right" role="tablist">
+            <li class="nav-item m-tabs__item">
+              <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_portlet_base_demo_1_tab_content" role="tab">
+                <i class="flaticon-multimedia"></i> Purchase Order
+              </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+              <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_portlet_base_demo_2_tab_content" (click)="getOtherTransactions()"
+                role="tab">
+                <i class="flaticon-squares-3"></i> Order Fulfilment
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="m-portlet__body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="m_portlet_base_demo_1_tab_content" role="tabpanel">
+            <div class="col-md-12">
+              <span class="m-section__sub">
+
+              </span>
+              <div class="m-section__content" style="overflow-y: auto; height: 500px ;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Reference</th>
+                      <th>Auth_Code</th>
+                      <th>Bank</th>
+                      <th>Date time</th>
+                      <th>Credit</th>
+                      <th>Debit</th>
+                      <th>Remarks</th>
+                      <!-- <th></th> -->
+                    </tr>
+                  </thead>
+
+
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="m_portlet_base_demo_2_tab_content" role="tabpanel">
+            <div class="m-section__content" style="overflow-y: auto; height: 500px ;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Reference</th>
+                    <th>Auth_Code</th>
+                    <th>Bank</th>
+                    <th>Date time</th>
+                    <th>Amount</th>
+                    <th>Remarks</th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+
+
+              </table>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+</div>
